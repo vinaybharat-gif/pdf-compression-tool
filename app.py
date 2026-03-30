@@ -69,3 +69,17 @@ if uploaded_file is not None:
                 # Optional: Show a tiny peek at the binary string
                 with st.expander("Click to peek at the raw compressed binary data"):
                     st.write(compressed_data[:1000] + "...")
+                
+                # --- NEW DOWNLOAD BUTTON START ---
+                st.divider()
+                st.subheader("💾 Download Compressed Data")
+                st.info("Note: The downloaded file contains the raw compressed binary data (.bin), not a standard PDF.")
+                
+                # Create the download button
+                st.download_button(
+                    label="⬇️ Download Compressed File",
+                    data=compressed_data,
+                    file_name="compressed_text.bin",
+                    mime="application/octet-stream"
+                )
+                # --- NEW DOWNLOAD BUTTON END ---
