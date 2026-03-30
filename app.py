@@ -5,7 +5,7 @@ from huffman import build_huffman_tree, generate_codes, compress_text, decompres
 # 1. Set up the Webpage Title and Design
 st.set_page_config(page_title="Huffman Compressor", page_icon="🗜️")
 st.title("🗜️ Huffman PDF Compressor")
-st.write("Upload a PDF file below to compress its text using the Huffman Coding algorithm (DAA Project by Vinay).")
+st.write("Upload a PDF file below to compress its text using the Huffman Coding algorithm.")
 
 # 2. Create a File Uploader Box
 uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
