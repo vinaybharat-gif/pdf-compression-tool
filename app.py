@@ -6,12 +6,12 @@ from huffman import build_huffman_tree, generate_codes, compress_text, decompres
 st.set_page_config(page_title="Huffman Compressor", page_icon="⚡")
 
 # 2. COLORFUL TITLE WITH NEW LOGO
-st.markdown("<h1 style='text-align: center; color: #00E676;'>⚡ Huffman PDF Compressor</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #00E676;'>✂️🔨Huffman File Compressor</h1>", unsafe_allow_html=True)
 
 # 3. COLORFUL DESCRIPTION BOX
-st.info("✨ **DAA Project:** Upload a PDF file below to compress its text using the **Huffman Coding algorithm**. Watch the data shrink in real-time!")
+st.info("✨ **DAA Project:** Upload a PDF or Text file below to compress its text using the **Huffman Coding algorithm**. Watch the data shrink in real-time!")
 
-# 4. THE "IMPRESS THE MADAM" SIDEBAR
+# 4. THE "IMPRESS" SIDEBAR
 with st.sidebar:
     st.header("👩‍🏫 Project Details")
     st.success("**Algorithm:** Huffman Coding")
@@ -19,25 +19,32 @@ with st.sidebar:
     st.warning("**Time Complexity:** O(N log N)")
     st.error("**Space Complexity:** O(N)")
 
-# 5. Create a File Uploader Box
-uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
+# 5. Create a File Uploader Box (UPDATED FOR PDF & TXT)
+uploaded_file = st.file_uploader("Choose a PDF or Text file", type=["pdf", "txt"])
 
-# 6. What happens when a file is uploaded?
+# 6. What happens when a file is uploaded? (UPDATED LOGIC)
 if uploaded_file is not None:
     pdf_text = ""
     try:
-        reader = PyPDF2.PdfReader(uploaded_file)
-        for page in reader.pages:
-            text = page.extract_text()
-            if text:
-                pdf_text += text
+        # Check if it is a PDF file
+        if uploaded_file.name.endswith('.pdf'):
+            reader = PyPDF2.PdfReader(uploaded_file)
+            for page in reader.pages:
+                text = page.extract_text()
+                if text:
+                    pdf_text += text
+                    
+        # Check if it is a Text file
+        elif uploaded_file.name.endswith('.txt'):
+            pdf_text = uploaded_file.read().decode("utf-8")
+            
     except Exception as e:
-        st.error(f"Error reading PDF: {e}")
+        st.error(f"Error reading file: {e}")
 
     # Create a big "Compress" button
     if st.button("🚀 Run Compression Algorithm"):
         if not pdf_text.strip():
-            st.error("Could not find any readable text in this PDF. Please try a different one!")
+            st.error("Could not find any readable text in this file. Please try a different one!")
         else:
             with st.spinner("Building Huffman Tree and Compressing..."):
                 # Run your exact algorithm
