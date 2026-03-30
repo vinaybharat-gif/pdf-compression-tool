@@ -2,15 +2,27 @@ import streamlit as st
 import PyPDF2
 from huffman import build_huffman_tree, generate_codes, compress_text, decompress_text
 
-# 1. Set up the Webpage Title and Design
-st.set_page_config(page_title="Huffman Compressor", page_icon="🗜️")
-st.title("🗜️ Huffman PDF Compressor")
-st.write("Upload a PDF file below to compress its text using the Huffman Coding algorithm.")
+# 1. CHANGE THE BROWSER TAB LOGO (Must be the first Streamlit command!)
+st.set_page_config(page_title="Huffman Compressor", page_icon="⚡")
 
-# 2. Create a File Uploader Box
+# 2. COLORFUL TITLE WITH NEW LOGO
+st.markdown("<h1 style='text-align: center; color: #00E676;'>⚡ Huffman PDF Compressor</h1>", unsafe_allow_html=True)
+
+# 3. COLORFUL DESCRIPTION BOX
+st.info("✨ **DAA Project:** Upload a PDF file below to compress its text using the **Huffman Coding algorithm**. Watch the data shrink in real-time!")
+
+# 4. THE "IMPRESS THE MADAM" SIDEBAR
+with st.sidebar:
+    st.header("👩‍🏫 Project Details")
+    st.success("**Algorithm:** Huffman Coding")
+    st.info("**Approach:** Greedy Algorithm")
+    st.warning("**Time Complexity:** O(N log N)")
+    st.error("**Space Complexity:** O(N)")
+
+# 5. Create a File Uploader Box
 uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
 
-# 3. What happens when a file is uploaded?
+# 6. What happens when a file is uploaded?
 if uploaded_file is not None:
     pdf_text = ""
     try:
