@@ -73,13 +73,13 @@ if uploaded_file is not None:
                 # --- NEW DOWNLOAD BUTTON START ---
                 st.divider()
                 st.subheader("💾 Download Compressed Data")
-                st.info("Note: The downloaded file contains the raw compressed binary data (.bin), not a standard PDF.")
+                st.info("Note: The downloaded file contains the raw compressed binary data saved as a readable Text file (.txt).")
                 
                 # Create the download button
                 st.download_button(
                     label="⬇️ Download Compressed File",
                     data=compressed_data,
-                    file_name="compressed_text.bin",
-                    mime="application/octet-stream"
+                    file_name="compressed_text.txt",
+                    mime="text/plain"
                 )
                 # --- NEW DOWNLOAD BUTTON END ---
